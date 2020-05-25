@@ -39,12 +39,12 @@ public class Rocket : MonoBehaviour{
             case "Finish":
                 state = GameState.Next;
                 print("Finish Pad Hit");
-                Invoke("LoadNextScene", 1f);
+                Invoke("LoadNextLevel", 1f);
                 break;
             default:
                 state = GameState.Dead;
                 print("You are dead");
-                SceneManager.LoadScene(0);
+                invoke("LoadFirstLevel", 1f);
                 //Reset Game
                 break;
            
@@ -53,7 +53,12 @@ public class Rocket : MonoBehaviour{
             
     }
 
-    private void LoadNextScene()
+    private void LoadFirstLevel()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    private void LoadNextLevel()
     {
         SceneManager.LoadScene(1);
     }
