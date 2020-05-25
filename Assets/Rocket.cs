@@ -1,16 +1,18 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour{
-
+    //add wind according to clouds 
     Rigidbody rigidbody;
     AudioSource audio;
 
     [SerializeField] float rocketRotationThrust = 10f;
     [SerializeField] float rocketUpThrust = 10f;
 
+
+    enum GameState {Alive, Dead, Next};
+    GameState state = GameState.Alive;
 
     // Start is called before the first frame update
     void Start()
@@ -31,13 +33,29 @@ public class Rocket : MonoBehaviour{
         switch (collision.gameObject.tag)
         {
             case "Friendly":
-                print("You good");
+                state = GameState.Alive;
+                print("Friendly Pad hit");
                 break;
-            case "Enemy":
-                print("You dead homie");
-                break; 
+            case "Finish":
+                state = GameState.Next;
+                print("Finish Pad Hit");
+                Invoke("LoadNextScene", 1f);
+                break;
+            default:
+                state = GameState.Dead;
+                print("You are dead");
+                SceneManager.LoadScene(0);
+                //Reset Game
+                break;
+           
+
         }
             
+    }
+
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene(1);
     }
 
     private void Rotate()
