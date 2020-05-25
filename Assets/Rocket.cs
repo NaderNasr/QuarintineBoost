@@ -24,12 +24,19 @@ public class Rocket : MonoBehaviour{
     // Update is called once per frame
     void Update()
     {
-        Rotate();
-        ThrustingAction();
+        // TODO - stop sound too!
+        if (state == GameState.Alive)
+        {
+            StartRotation();
+            StartBoosting();
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
+
+        if( state != GameState.Alive) {return;} // basically if dead just go back to scene.
+
         switch (collision.gameObject.tag)
         {
             case "Friendly":
@@ -44,7 +51,7 @@ public class Rocket : MonoBehaviour{
             default:
                 state = GameState.Dead;
                 print("You are dead");
-                invoke("LoadFirstLevel", 1f);
+                Invoke("LoadFirstLevel", 1f);
                 //Reset Game
                 break;
            
@@ -63,7 +70,7 @@ public class Rocket : MonoBehaviour{
         SceneManager.LoadScene(1);
     }
 
-    private void Rotate()
+    private void StartRotation()
     {
 
         rigidbody.freezeRotation = true;
@@ -84,21 +91,27 @@ public class Rocket : MonoBehaviour{
         rigidbody.freezeRotation = false;
     }
 
-    private void ThrustingAction()
+    private void StartBoosting()
     {
         if (Input.GetKey(KeyCode.Space)) //can rotate while boosting - 2 ifs
         {
-            rigidbody.AddRelativeForce(Vector3.up * rocketUpThrust);
-            
-
-            if (!audio.isPlaying)
-            {
-                audio.Play();
-            }
-            else
-            {
-                audio.Stop();
-            }
+            ApplyBoost();
         }
+        else
+        {
+            audio.Stop();
+        }
+    }
+
+    private void ApplyBoost()
+    {
+        rigidbody.AddRelativeForce(Vector3.up * rocketUpThrust);
+
+
+        if (!audio.isPlaying)
+        {
+            audio.Play();
+        }
+        
     }
 }
