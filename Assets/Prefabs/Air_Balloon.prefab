@@ -244,8 +244,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 22.21885, y: 35.026253, z: 22.730774}
-  m_Center: {x: 0.21975327, y: 16.513126, z: -0.36582947}
+  m_Size: {x: 22.21885, y: 33.561504, z: 22.730774}
+  m_Center: {x: 0.21975327, y: 17.2455, z: -0.36582947}
 --- !u!114 &3021115917318272913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,5 +258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a38e1f57bb977488065e1aa9233f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rocketRotationThrust: 10
-  rocketUpThrust: 10
+  rocketRotationThrust: 75
+  rocketUpThrust: 20
+  boostAudio: {fileID: 8300000, guid: 2227a8f6044c52140a0e4ca2f9f4ca76, type: 3}
+  deathAudio: {fileID: 8300000, guid: 309b904ead693d24099c81d40f74c0e5, type: 3}
+  successAudio: {fileID: 8300000, guid: 0872435dcb9af504da4f18f88f14c7fa, type: 3}

@@ -5,10 +5,17 @@ using UnityEngine.SceneManagement;
 public class Rocket : MonoBehaviour{
     //add wind according to clouds 
     Rigidbody rigidbody;
-    AudioSource audio;
+
 
     [SerializeField] float rocketRotationThrust = 10f;
     [SerializeField] float rocketUpThrust = 10f;
+
+    [SerializeField] private AudioClip boostAudio;
+    [SerializeField] private AudioClip deathAudio;
+    [SerializeField] private AudioClip successAudio;
+
+    AudioSource audioSource;
+
 
 
     enum GameState {Alive, Dead, Next};
@@ -18,7 +25,7 @@ public class Rocket : MonoBehaviour{
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -39,26 +46,41 @@ public class Rocket : MonoBehaviour{
 
         switch (collision.gameObject.tag)
         {
+
+            //KEEP IT DRY AS F
             case "Friendly":
                 state = GameState.Alive;
-                print("Friendly Pad hit");
+                //Do stuff like animation?
                 break;
             case "Finish":
-                state = GameState.Next;
-                print("Finish Pad Hit");
-                Invoke("LoadNextLevel", 1f);
+                StartNextLevel();
                 break;
             default:
-                state = GameState.Dead;
-                print("You are dead");
-                Invoke("LoadFirstLevel", 1f);
-                //Reset Game
+                StartLevelAgain();
                 break;
-           
 
         }
             
     }
+
+    private void StartNextLevel()
+    {
+        state = GameState.Next;
+        audioSource.Stop();
+        audioSource.PlayOneShot(successAudio);
+        Invoke("LoadNextLevel", 1f);
+    }
+
+
+    private void StartLevelAgain()
+    {
+        state = GameState.Dead;
+        audioSource.Stop();
+        audioSource.PlayOneShot(deathAudio);
+        Invoke("LoadFirstLevel", 1f);
+    }
+
+   
 
     private void LoadFirstLevel()
     {
@@ -99,7 +121,7 @@ public class Rocket : MonoBehaviour{
         }
         else
         {
-            audio.Stop();
+            audioSource.Stop();
         }
     }
 
@@ -108,9 +130,9 @@ public class Rocket : MonoBehaviour{
         rigidbody.AddRelativeForce(Vector3.up * rocketUpThrust);
 
 
-        if (!audio.isPlaying)
+        if (!audioSource.isPlaying)
         {
-            audio.Play();
+            audioSource.PlayOneShot(boostAudio);
         }
         
     }
