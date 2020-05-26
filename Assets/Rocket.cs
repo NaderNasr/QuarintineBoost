@@ -11,6 +11,7 @@ public class Rocket : MonoBehaviour{
     [SerializeField] float rocketUpThrust = 10f;
 
     [SerializeField] private AudioClip boostAudio;
+    //Audio
     [SerializeField] private AudioClip deathAudio;
     [SerializeField] private AudioClip successAudio;
 
