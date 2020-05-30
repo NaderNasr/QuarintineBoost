@@ -133,7 +133,7 @@ public class Rocket : MonoBehaviour{
 
     private void ApplyBoost()
     {
-        rigidbody.AddRelativeForce(Vector3.up * rocketUpThrust);
+        rigidbody.AddRelativeForce(Vector3.up * rocketUpThrust * Time.deltaTime); //real time
         if (!audioSource.isPlaying)
         {
             audioSource.PlayOneShot(boostAudio);
