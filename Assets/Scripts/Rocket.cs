@@ -5,18 +5,24 @@ using UnityEngine.SceneManagement;
 public class Rocket : MonoBehaviour{
     //add wind according to clouds 
     Rigidbody rigidbody;
+    AudioSource audioSource;
 
+    //Scene Manager
+    [SerializeField] float levelDelay = 2f;
 
+    //movement speed
     [SerializeField] float rocketRotationThrust = 10f;
     [SerializeField] float rocketUpThrust = 10f;
 
-    AudioSource audioSource;
-
+    //Audio
     [SerializeField] AudioClip boostAudio;
     [SerializeField] AudioClip deathAudio;
     [SerializeField] AudioClip successAudio;
 
+    //Particles
     [SerializeField] ParticleSystem boostParticles;
+    [SerializeField] ParticleSystem boostParticles2;
+
     [SerializeField] ParticleSystem deathParticles;
     [SerializeField] ParticleSystem successParticles;
 
@@ -72,7 +78,7 @@ public class Rocket : MonoBehaviour{
         audioSource.Stop();
         successParticles.Play();
         audioSource.PlayOneShot(successAudio);
-        Invoke("LoadNextLevel", 1f);
+        Invoke("LoadNextLevel", levelDelay);
     }
 
 
@@ -82,7 +88,7 @@ public class Rocket : MonoBehaviour{
         audioSource.Stop();
         deathParticles.Play();
         audioSource.PlayOneShot(deathAudio);
-        Invoke("LoadFirstLevel", 1f);
+        Invoke("LoadFirstLevel", levelDelay);
     }
 
    
@@ -128,6 +134,8 @@ public class Rocket : MonoBehaviour{
         {
             audioSource.Stop();
             boostParticles.Stop();
+            boostParticles2.Stop();
+
         }
     }
 
@@ -139,5 +147,7 @@ public class Rocket : MonoBehaviour{
             audioSource.PlayOneShot(boostAudio);
         }
         boostParticles.Play();
+        boostParticles2.Play();
+
     }
 }

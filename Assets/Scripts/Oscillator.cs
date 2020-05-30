@@ -23,10 +23,16 @@ public class Oscillator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //error if period goes to 0 = not a number 404 fix
+
+        if(period <= Mathf.Epsilon) //episilon used as lowest floating number possible!
+        {
+            return;
+        }
         //Math sin wave for movement of enemy object 
         float cycles = Time.time / period;
         const float tau = Mathf.PI * 2f;
-        float sinWave = Mathf.Sin(cycles * tau);
+        float sinWave = Mathf.Sin(cycles * tau); // -1 to +1
 
         //     print(sinWave);
 
