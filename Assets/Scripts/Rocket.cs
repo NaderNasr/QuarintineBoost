@@ -26,7 +26,7 @@ public class Rocket : MonoBehaviour{
     [SerializeField] ParticleSystem deathParticles;
     [SerializeField] ParticleSystem successParticles;
 
-
+   
     enum GameState {Alive, Dead, Next};
     GameState state = GameState.Alive;
 
@@ -35,6 +35,7 @@ public class Rocket : MonoBehaviour{
     {
         rigidbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -46,6 +47,8 @@ public class Rocket : MonoBehaviour{
             StartRotation();
             StartBoosting();
         }
+
+
     }
 
     void OnCollisionEnter(Collision collision)
