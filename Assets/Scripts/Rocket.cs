@@ -26,6 +26,8 @@ public class Rocket : MonoBehaviour{
     [SerializeField] ParticleSystem deathParticles;
     [SerializeField] ParticleSystem successParticles;
 
+    public bool collisionDisabled = false;
+
    
     enum GameState {Alive, Dead, Next};
     GameState state = GameState.Alive;
@@ -48,13 +50,29 @@ public class Rocket : MonoBehaviour{
             StartBoosting();
         }
 
+        RespondToDebugLogs();
+
 
     }
+
+    private void RespondToDebugLogs()
+    {
+        if (Input.GetKeyDown(KeyCode.L)) // start next level
+        {
+            StartNextLevel();
+        } 
+        else if(Input.GetKeyDown(KeyCode.C)) // disable collision
+        {
+            collisionDisabled = !collisionDisabled; // toggle switch
+        }
+    }
+
+ 
 
     void OnCollisionEnter(Collision collision)
     {
 
-        if( state != GameState.Alive) {return;} // basically if dead just go back to scene.
+        if( state != GameState.Alive || collisionDisabled) {return;} // basically if dead just go back to scene.
 
         switch (collision.gameObject.tag)
         {
