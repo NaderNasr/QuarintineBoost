@@ -34,6 +34,7 @@ public class Oscillator : MonoBehaviour
         const float tau = Mathf.PI * 2f;
         float sinWave = Mathf.Sin(cycles * tau); // -1 to +1
 
+        //print(Mathf.Sin(tau / 4f));
         //     print(sinWave);
 
         movementFactor = sinWave / 2f + 0.5f; // dived by to go between .5 and -.5 + 0.5 to go to .5 and 1

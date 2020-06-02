@@ -50,7 +50,10 @@ public class Rocket : MonoBehaviour{
             StartBoosting();
         }
 
-        RespondToDebugLogs();
+        if (Debug.isDebugBuild) // Debug keys only  respond in development mode
+        {
+            RespondToDebugLogs();
+        }
 
 
     }
@@ -116,6 +119,14 @@ public class Rocket : MonoBehaviour{
 
     private void LoadFirstLevel()
     {
+        int activeScene = SceneManager.GetActiveScene().buildIndex;
+        //print(activeScene);
+        int nextLevel = activeScene + 1;
+        //load level till end of last scene then reset
+        if(nextLevel == SceneManager.sceneCountInBuildSettings)
+        {
+            nextLevel = 0;
+        }
         SceneManager.LoadScene(0);
     }
 
