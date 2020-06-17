@@ -1,31 +1,40 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Rocket : MonoBehaviour{
-    //add wind according to clouds 
-    Rigidbody rigidbody;
+
+
+    private new Rigidbody rigidbody;
     AudioSource audioSource;
+    //[SerializeField] Text FuelText;
+    //[SerializeField] Image FuelImage;
 
     //Scene Manager
     [SerializeField] float levelDelay = 2f;
 
-    //movement speed
+    [Header("Movement Speed")]
     [SerializeField] float rocketRotationThrust = 10f;
     [SerializeField] float rocketUpThrust = 10f;
 
-    //Audio
+    //[Header("Fuel Burn Rate")]
+    //[SerializeField] float burnRatePerSecond = 10f;
+    //[SerializeField] float maxFuelPerSecond = 100f;
+
+    [Header("Audio")]
     [SerializeField] AudioClip boostAudio;
     [SerializeField] AudioClip deathAudio;
     [SerializeField] AudioClip successAudio;
 
-    //Particles
+    [Header("Particles")]
     [SerializeField] ParticleSystem boostParticles;
     [SerializeField] ParticleSystem boostParticles2;
 
     [SerializeField] ParticleSystem deathParticles;
     [SerializeField] ParticleSystem successParticles;
 
+    [Header("Collision Debugger")]
     public bool collisionDisabled = false;
 
    
@@ -55,8 +64,10 @@ public class Rocket : MonoBehaviour{
             RespondToDebugLogs();
         }
 
-
+       
     }
+
+  
 
     private void RespondToDebugLogs()
     {
@@ -161,6 +172,7 @@ public class Rocket : MonoBehaviour{
         if (Input.GetKey(KeyCode.Space)) //can rotate while boosting - 2 ifs
         {
             ApplyBoost();
+
         }
         else
         {
@@ -181,5 +193,21 @@ public class Rocket : MonoBehaviour{
         boostParticles.Play();
         boostParticles2.Play();
 
+        //FuelImage.fillAmount = maxFuelPerSecond / burnRatePerSecond;
+        //FuelText.text = "Fuel: " + ((int)(maxFuelPerSecond -= burnRatePerSecond)).ToString() + " %";
+
+
+       //print(maxFuelPerSecond);
+       //print(Time.deltaTime+"Deltaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+      //if (maxFuelPerSecond <= 0f)
+      //  {
+      //     StartLevelAgain();
+      //  }
+
+
+
     }
+
+    
 }

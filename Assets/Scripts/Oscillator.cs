@@ -6,10 +6,12 @@ using UnityEngine;
 public class Oscillator : MonoBehaviour
 {
 
-    [SerializeField] Vector3 movementVector;
+   
     [SerializeField] float period = 2f;
+    [SerializeField] Vector3 movementVector;
 
     [Range(0,1)][SerializeField] float movementFactor;
+
 
     Vector3 startPos;
 
