@@ -318,6 +318,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enviroment 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1276860984121760587, guid: 52edba0a2b81d2e4ea201d9f2db09f40,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52edba0a2b81d2e4ea201d9f2db09f40, type: 3}
 --- !u!1001 &2203504850697696249
@@ -1283,6 +1288,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GroundPlate
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445727605165624389, guid: 4883a58ad140c8b4bb500139db5ccf96,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4883a58ad140c8b4bb500139db5ccf96, type: 3}

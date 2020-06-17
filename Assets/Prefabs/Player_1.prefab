@@ -103,9 +103,8 @@ GameObject:
   - component: {fileID: 3251497312005650465}
   - component: {fileID: 3300690306826277205}
   - component: {fileID: 3183317057569570819}
-  - component: {fileID: 3246775804722296063}
   - component: {fileID: 3246775804722296059}
-  - component: {fileID: 6207826351259921873}
+  - component: {fileID: 2507373931600548431}
   m_Layer: 0
   m_Name: Player_1
   m_TagString: Untagged
@@ -245,19 +244,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!65 &3246775804722296063
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3245013037400289629}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.7538757, y: 8.551926, z: 4.886383}
-  m_Center: {x: -0.15457153, y: 2.0535984, z: 0.44166565}
 --- !u!114 &3246775804722296059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,15 +259,16 @@ MonoBehaviour:
   levelDelay: 2
   rocketRotationThrust: 140
   rocketUpThrust: 2000
-  boostAudio: {fileID: 8300000, guid: 2227a8f6044c52140a0e4ca2f9f4ca76, type: 3}
-  deathAudio: {fileID: 8300000, guid: 309b904ead693d24099c81d40f74c0e5, type: 3}
-  successAudio: {fileID: 8300000, guid: 0872435dcb9af504da4f18f88f14c7fa, type: 3}
+  boostAudio: {fileID: 8300000, guid: 0e846fd05617143c59d008c18b5cb126, type: 3}
+  deathAudio: {fileID: 8300000, guid: c08448b65096b4765bf118cb45380181, type: 3}
+  successAudio: {fileID: 8300000, guid: b78fac212d1704cba98350382a79409f, type: 3}
   boostParticles: {fileID: 3445113617571607351}
   boostParticles2: {fileID: 3445113617571607351}
   deathParticles: {fileID: 3444818543858453291}
   successParticles: {fileID: 3444139018819326501}
---- !u!65 &6207826351259921873
-BoxCollider:
+  collisionDisabled: 0
+--- !u!136 &2507373931600548431
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -290,9 +277,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.7538757, y: 8.551926, z: 4.886383}
-  m_Center: {x: -0.15457153, y: 2.0535984, z: 0.44166565}
+  m_Radius: 2.0180163
+  m_Height: 9.174743
+  m_Direction: 1
+  m_Center: {x: -0.27376056, y: 1.8259559, z: 6.3290984e-10}
 --- !u!1 &3245052097065096883
 GameObject:
   m_ObjectHideFlags: 0
